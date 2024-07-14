@@ -1,0 +1,20 @@
+{
+  "name": "duolingo-xp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "Duolingo",
+    "XP",
+    "Node.js"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "Script para acumular XP no Duolingo automaticamente",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  },
+  "type": "module"
+}
