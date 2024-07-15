@@ -14,14 +14,15 @@ try {
     // Define o token JWT no ambiente
     process.env.DUOLINGO_JWT = token;
 
-    // Cria uma nova data e formata para o formato YYYY-MM-DD
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // getMonth() retorna de 0 a 11, então adicionamos 1
-    const day = String(date.getDate()).padStart(2, '0');
+    // // Cria uma nova data e formata para o formato YYYY-MM-DD
+    // const newDate = new Date();
+    // const year = newDate.getFullYear();
+    // const month = String(newDate.getMonth() + 1).padStart(2, '0'); // getMonth() retorna de 0 a 11, então adicionamos 1
+    // const day = String(newDate.getDate()).padStart(2, '0');
+    // // Formata a data no padrão YYYY-MM-DD
+    // const date = `${year}-${month}-${day}`;
 
-    // Formata a data no padrão YYYY-MM-DD
-    const formattedDate = `${year}-${month}-${day}`;
+    const date = '2017-06-30'
 
     // Define os cabeçalhos para as requisições HTTP
     const headers = {
@@ -37,7 +38,7 @@ try {
 
     // Faz uma requisição para obter os idiomas que o usuário está aprendendo e o idioma de origem
     const { fromLanguage, learningLanguage } = await fetch(
-        `https://www.duolingo.com/${formattedDate}/users/${sub}?fields=fromLanguage,learningLanguage`,
+        `https://www.duolingo.com/${date}/users/${sub}?fields=fromLanguage,learningLanguage`,
         { headers }
     ).then((response) => response.json());
 
@@ -57,28 +58,19 @@ try {
     for (let i = 0; i < process.env.LESSONS; i++) {
         // Faz uma requisição para iniciar uma nova sessão de prática
         const session = await fetch(
-            `https://www.duolingo.com/${formattedDate}/sessions`,
+            `https://www.duolingo.com/${date}/sessions`,
             {
                 body: JSON.stringify({
                     challengeTypes: [
                         // Tipos de desafio que podem ser praticados
-                        "assist", "characterIntro", "characterMatch", "characterPuzzle", 
-                        "characterSelect", "characterTrace", "characterWrite", 
-                        "completeReverseTranslation", "definition", "dialogue", 
-                        "extendedMatch", "extendedListenMatch", "form", "freeResponse", 
-                        "gapFill", "judge", "listen", "listenComplete", "listenMatch", 
-                        "match", "name", "listenComprehension", "listenIsolation", 
-                        "listenSpeak", "listenTap", "orderTapComplete", "partialListen", 
-                        "partialReverseTranslate", "patternTapComplete", "radioBinary", 
-                        "radioImageSelect", "radioListenMatch", "radioListenRecognize", 
-                        "radioSelect", "readComprehension", "reverseAssist", 
-                        "sameDifferent", "select", "selectPronunciation", 
-                        "selectTranscription", "svgPuzzle", "syllableTap", 
-                        "syllableListenTap", "speak", "tapCloze", "tapClozeTable", 
-                        "tapComplete", "tapCompleteTable", "tapDescribe", "translate", 
-                        "transliterate", "transliterationAssist", "typeCloze", 
-                        "typeClozeTable", "typeComplete", "typeCompleteTable", 
-                        "writeComprehension",
+                        "assist", "characterIntro", "characterMatch", "characterPuzzle", "characterSelect", "characterTrace", "characterWrite",
+                        "completeReverseTranslation", "definition", "dialogue", "extendedMatch", "extendedListenMatch", "form", "freeResponse",
+                        "gapFill", "judge", "listen", "listenComplete", "listenMatch", "match", "name", "listenComprehension", "listenIsolation",
+                        "listenSpeak", "listenTap", "orderTapComplete", "partialListen", "partialReverseTranslate", "patternTapComplete",
+                        "radioBinary", "radioImageSelect", "radioListenMatch", "radioListenRecognize", "radioSelect", "readComprehension",
+                        "reverseAssist", "sameDifferent", "select", "selectPronunciation", "selectTranscription", "svgPuzzle", "syllableTap",
+                        "syllableListenTap", "speak", "tapCloze", "tapClozeTable", "tapComplete", "tapCompleteTable", "tapDescribe", "translate",
+                        "transliterate", "transliterationAssist", "typeCloze", "typeClozeTable", "typeComplete", "typeCompleteTable", "writeComprehension"
                     ],
                     fromLanguage, // Idioma de origem selecionado pelo usuário
                     isFinalLevel: false, // Indica se é o nível final da lição (false para práticas regulares)
@@ -95,7 +87,7 @@ try {
 
         // Faz uma requisição para finalizar a sessão iniciada e calcular os pontos de experiência ganhos
         const response = await fetch(
-            `https://www.duolingo.com/${formattedDate}/sessions/${session.id}`,
+            `https://www.duolingo.com/${date}/sessions/${session.id}`,
             {
                 body: JSON.stringify({
                     ...session,
@@ -104,7 +96,7 @@ try {
                     enableBonusPoints: false, // Pontos de bônus
                     endTime: +new Date() / 1000, // Hora atual, fim da sessão
                     failed: false, // Indica se a sessão falhou (false para sucesso)
-                    maxInLessonStreak: 10, // Número máximo de lições na sequência
+                    maxInLessonStreak: 9, // Número máximo de lições na sequência
                     shouldLearnThings: true, // Indica se deve aprender coisas (true para aprendizado)
                 }),
                 headers,
@@ -144,7 +136,8 @@ try {
     console.log(``);
 
 } catch (error) {
-    console.log("❌ Algo deu errado");
+    console.log(`\n`);
+    console.log("❌ Algo deu errado: ");
     if (error instanceof Error) {
         console.error(error.message); // Exibe a mensagem de erro caso ocorra uma exceção
     }
