@@ -1,6 +1,4 @@
 @echo off
-REM Define a página de código para UTF-8
-chcp 65001 >nul
 
 REM Verifica se o Node.js está instalado
 node -v >nul 2>&1
