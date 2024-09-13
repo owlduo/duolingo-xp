@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 try {
     // Define o número de lições a serem realizadas
-    const licoes = 69;
+    const licoes = 42;
 
     // Define a variável LESSONS no ambiente, se não estiver definida, será igual ao valor de 'licoes'
     process.env.LESSONS = process.env.LESSONS ?? licoes;
@@ -51,7 +51,7 @@ try {
     const formatLine = (icon, text) => `${icon} ---- ${text}`.padEnd(lineLength, '  ');
 
     console.log(``);
-    console.log(formatLine('🍉', 'Sly is amazing, thank Sly for this gift!'));
+    console.log(formatLine('🙇🏿', 'Sly is amazing, thank Sly for this gift!'));
     console.log(``);
 
     // Loop para realizar o número de lições definido pela variável de ambiente LESSONS
