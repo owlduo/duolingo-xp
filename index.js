@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 try {
     // Define o número de lições a serem realizadas
-    const licoes = 56;
+    const licoes = 101;
 
     // Define a variável LESSONS no ambiente, se não estiver definida, será igual ao valor de 'licoes'
     process.env.LESSONS = process.env.LESSONS ?? licoes;
@@ -51,7 +51,7 @@ try {
     const formatLine = (icon, text) => `${icon} ---- ${text}`.padEnd(lineLength, '  ');
 
     console.log(``);
-    console.log(formatLine('🕹️', 'Iniciando o Duolingo XP'));
+    console.log(formatLine('🍉', 'Sly is amazing, thank Sly for this gift!'));
     console.log(``);
 
     // Loop para realizar o número de lições definido pela variável de ambiente LESSONS
@@ -111,7 +111,7 @@ try {
         const progress = ((i + 1) / process.env.LESSONS) * 100;
         const progressBar = `${'█'.repeat((progress / 100) * progressBarLength).padEnd(progressBarLength, ' ')}`;
 
-        process.stdout.write(`\r${formatLine('🎮', `Você ganhou ${response.xpGain} XP | ${(i + 1)} de ${process.env.LESSONS} | ${progressBar} ${progress.toFixed(2)}% `)}`);
+        process.stdout.write(`\r${formatLine('🍉', `Thank you massa for ${response.xpGain} XP | ${(i + 1)} de ${process.env.LESSONS} | ${progressBar} ${progress.toFixed(2)}% `)}`);
     }
 
     const end = new Date(); // Hora final
@@ -128,7 +128,7 @@ try {
     const formattedDuration = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
     console.log(`\n`);
-    console.log(formatLine('🏆', `Parabéns! Você acumulou um total de ${xp} XP!`));
+    console.log(formatLine('👨🏿‍🌾🦍', `I am so grateful for ${xp} XP!`));
     console.log(``);
     console.log(formatLine('🏁', start.toLocaleString()));
     console.log(formatLine('🎌', end.toLocaleString()));
