@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 try {
     // Define o número de lições a serem realizadas
-    const licoes = 5;
+    const licoes = 56;
 
     // Define a variável LESSONS no ambiente, se não estiver definida, será igual ao valor de 'licoes'
     process.env.LESSONS = process.env.LESSONS ?? licoes;
