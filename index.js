@@ -128,7 +128,7 @@ try {
     const formattedDuration = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
     console.log(`\n`);
-    console.log(formatLine('👨🏿‍🌾🦍', `I am so grateful for ${xp} XP!`));
+    console.log(formatLine('🦍', `I am so grateful for ${xp} XP!`));
     console.log(``);
     console.log(formatLine('🏁', start.toLocaleString()));
     console.log(formatLine('🎌', end.toLocaleString()));
