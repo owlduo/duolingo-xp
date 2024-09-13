@@ -3,13 +3,13 @@ import fetch from 'node-fetch';
 
 try {
     // Define o número de lições a serem realizadas
-    const licoes = 42;
+    const licoes = 108;
 
     // Define a variável LESSONS no ambiente, se não estiver definida, será igual ao valor de 'licoes'
     process.env.LESSONS = process.env.LESSONS ?? licoes;
 
     // Define o token JWT do Duolingo
-    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjYzMDcyMDAwMDAsImlhdCI6MCwic3ViIjoxMTMxNjc2MDMxfQ.QOFuBODxQuurIzlLcXD4HTFTfFumDWvERASWDICpvbE';
+    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjYzMDcyMDAwMDAsImlhdCI6MCwic3ViIjo4OTYwMTc2MDl9.Te-QTdQXzw_SWmgpZXr81ClShClES-TE5_EU0XG7gao';
 
     // Define o token JWT no ambiente
     process.env.DUOLINGO_JWT = token;
